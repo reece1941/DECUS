@@ -194,9 +194,9 @@ frontend:
 
   - task: "Upgraded Cart & Checkout Pages Testing"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/pages/CartPage.js, /app/frontend/src/pages/CheckoutPage.js"
-    stuck_count: 1
+    stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
@@ -206,6 +206,9 @@ frontend:
         - working: false
         - agent: "testing"
         - comment: "❌ CRITICAL ISSUE IDENTIFIED: Add to cart functionality broken. Items not being added to cart from competition pages despite UI appearing to work. Cart remains empty after clicking 'Add to Cart' buttons. This prevents testing of cart with actual items and checkout flow. ✅ VERIFIED THROUGH CODE REVIEW: All upgraded features implemented correctly - professional 2-column layouts, bulk discount buttons (10,25,50,100), discount badges, recommendations with Quick Add, coupon code section, payment methods with **MOCKED** card badge, upsell section, luxury purple/gold theme, mobile responsiveness. Backend cart API endpoints exist but frontend integration appears broken. Need to investigate CartContext.js and competition page add to cart handlers."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ FIXED: Cart and checkout functionality now working perfectly after fixing API URL issue in frontend/src/services/api.js (missing /api suffix). Complete end-to-end purchase flow tested successfully: Login → Competition Selection → Add to Cart (12 tickets) → Checkout → Payment Selection → Complete Purchase → Thank You page. All upgraded features verified working: professional 2-column layouts, bulk discount buttons, payment methods with balances, **MOCKED** card payment, upsell recommendations, coupon code section, luxury purple/gold theme, mobile responsiveness. Order processing and ticket allocation working correctly."
 
 metadata:
   created_by: "testing_agent"
