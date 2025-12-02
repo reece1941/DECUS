@@ -423,8 +423,10 @@
 
 @media (max-width: 480px) {
   .decus-countdown-badge {
-    padding: 8px 20px;
-    font-size: 0.7rem;
+    top: -40px;
+    padding: 6px 16px;
+    font-size: 0.65rem;
+    letter-spacing: 0.5px;
   }
 
   .decus-title-card {
