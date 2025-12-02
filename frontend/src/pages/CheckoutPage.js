@@ -89,6 +89,24 @@ const CheckoutPage = () => {
     return balance >= total;
   };
 
+  const handleBulkUpdate = async (itemId, newQuantity) => {
+    await updateQuantity(itemId, newQuantity);
+  };
+
+  const handleQuickAddUpsell = async (comp) => {
+    setAddingUpsell(comp.id);
+    const { addToCart } = useCart();
+    await addToCart({
+      competition_id: comp.id,
+      title: comp.title,
+      price: comp.price,
+      quantity: 1,
+      image: comp.image || comp.video,
+    });
+    setAddingUpsell(null);
+    fetchUpsellCompetitions();
+  };
+
   return (
     <div className="checkout-page">
       <Header />
