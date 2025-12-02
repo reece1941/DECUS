@@ -62,7 +62,7 @@ const HomePage = () => {
       </section>
 
       {/* User Dashboard (FAB + Overlay) */}
-      {isAuthenticated && <UserDashboard />}
+      {isAuthenticated && <UserDashboardPro />}
     </div>
   );
 };
