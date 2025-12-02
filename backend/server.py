@@ -644,8 +644,9 @@ async def get_admin_stats(current_user: dict = Depends(get_current_admin_user)):
     }
 
 
-# Include the router in the main app
+# Include routers in the main app
 app.include_router(api_router)
+app.include_router(payment_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
