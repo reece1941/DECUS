@@ -19,10 +19,10 @@ const CheckoutPage = () => {
   const [upsellCompetitions, setUpsellCompetitions] = useState([]);
 
   useEffect(() => {
-    if (cart.items.length === 0) {
-      navigate('/cart');
-      return;
-    }
+    // Temporarily disabled for testing - if (cart.items.length === 0) {
+    //   navigate('/cart');
+    //   return;
+    // }
     fetchUpsellCompetitions();
   }, []);
 
