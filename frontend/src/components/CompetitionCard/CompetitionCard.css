@@ -95,11 +95,11 @@
 }
 
 .decus-instant {
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
   background: linear-gradient(135deg, #00ffff, #0099ff);
   color: #000;
-  border: 1.5px solid #00ffff;
+  border: 1px solid #00ffff;
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
