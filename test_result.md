@@ -192,17 +192,20 @@ frontend:
         - agent: "testing"
         - comment: "✅ UPGRADED CHECKOUT PAGE VERIFIED: Comprehensive testing of upgraded checkout UI completed successfully. Professional 2-column layout (order summary left, payment right), product image structure ready, clear pricing breakdown with highlighted totals, coupon code section with 'SAVE10' test, multiple payment options with balance display, **MOCKED** card payment clearly indicated, upsell recommendations section with 3 items, Complete Purchase button with luxury styling, purple/gold theme throughout, responsive design for mobile. All visual and functional requirements met. Screenshots captured for desktop and mobile views."
 
-  - task: "Upgraded Checkout Page Visual Design"
+  - task: "Upgraded Cart & Checkout Pages Testing"
     implemented: true
-    working: true
-    file: "/app/frontend/src/pages/CheckoutPage.js"
-    stuck_count: 0
+    working: false
+    file: "/app/frontend/src/pages/CartPage.js, /app/frontend/src/pages/CheckoutPage.js"
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
         - working: true
         - agent: "testing"
         - comment: "✅ VISUAL VERIFICATION COMPLETE: Upgraded checkout page successfully tested and verified. Features confirmed: 1) Professional 2-column layout (665px each column), 2) Order summary section with product image structure, 3) Clear pricing breakdown (Subtotal: £0.00, Total: £0.00 highlighted in gold), 4) Coupon code section with 'Have a coupon code?' title and 'SAVE10' test functionality, 5) Payment methods: Site Credit (Balance: £0.00), Cash Balance (Balance: £0.00), Credit/Debit Card (**MOCKED** payment badge), 6) Complete Purchase button with luxury gold styling, 7) Upsell section 'You might also like...' with 3 recommendation items (£2,400 RENT COVERED, LUXURY HOLIDAY PACKAGE, CASH JACKPOT £10,000), 8) Luxury purple/gold theme with 4 checkout cards, 9) Responsive design adapts correctly to mobile (390x844px). All screenshots captured successfully."
+        - working: false
+        - agent: "testing"
+        - comment: "❌ CRITICAL ISSUE IDENTIFIED: Add to cart functionality broken. Items not being added to cart from competition pages despite UI appearing to work. Cart remains empty after clicking 'Add to Cart' buttons. This prevents testing of cart with actual items and checkout flow. ✅ VERIFIED THROUGH CODE REVIEW: All upgraded features implemented correctly - professional 2-column layouts, bulk discount buttons (10,25,50,100), discount badges, recommendations with Quick Add, coupon code section, payment methods with **MOCKED** card badge, upsell section, luxury purple/gold theme, mobile responsiveness. Backend cart API endpoints exist but frontend integration appears broken. Need to investigate CartContext.js and competition page add to cart handlers."
 
 metadata:
   created_by: "testing_agent"
