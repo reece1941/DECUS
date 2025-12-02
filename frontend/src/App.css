@@ -1,34 +1,157 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+html {
+  font-size: 16px;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+body {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #2d1b3e 0%, #1a0f26 50%, #0f0618 100%);
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-.App-link {
-    color: #61dafb;
+::selection {
+  background: #ffd700;
+  color: #000;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Navigation */
+.decus-nav {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, rgba(10, 5, 20, 0.95) 0%, rgba(20, 10, 40, 0.98) 50%, rgba(10, 5, 20, 0.95) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 215, 0, 0.2);
+  border-radius: 999px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.15);
+  z-index: 1000;
+  padding: 16px 32px;
+  max-width: 1480px;
+  margin: 0 auto 40px;
+}
+
+.decus-nav-tabs {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.decus-nav-tab {
+  padding: 14px 28px;
+  font-weight: 900;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.decus-nav-tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.decus-nav-tab:hover::before {
+  left: 100%;
+}
+
+.decus-nav-tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ffd700, #00ffff);
+  transition: width 0.3s ease, left 0.3s ease;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px #ffd700;
+}
+
+.decus-nav-tab:hover {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.decus-nav-tab.active {
+  color: #ffd700;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 255, 0.1));
+  border-color: #ffd700;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 4px 15px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.decus-nav-tab.active::after {
+  width: 80%;
+}
+
+/* Section Title */
+.decus-section {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.decus-title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 40px;
+  color: #ffd700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 2px #8a2be2, 0 0 6px rgba(0, 0, 0, 0.8);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .decus-nav {
+    border-radius: 20px;
+    padding: 12px 16px;
+    margin: 0 20px 30px;
+  }
+  
+  .decus-nav-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 4px;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+  }
+  
+  .decus-nav-tab {
+    padding: 10px 18px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+  }
+  
+  .decus-section {
+    padding: 0 16px;
+  }
 }
