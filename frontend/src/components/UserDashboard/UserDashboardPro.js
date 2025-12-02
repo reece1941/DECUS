@@ -3,7 +3,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
-import './UserDashboard.css';
+import './UserDashboardPro.css';
 
 const UserDashboardPro = () => {
   const { user, logout } = useAuth();
