@@ -386,7 +386,77 @@
   font-size: 13px;
 }
 
-/* Upsell Section */
+/* Bulk Discount Buttons in Order Items */
+.bulk-discount-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.bulk-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+}
+
+.bulk-qty-btn {
+  position: relative;
+  padding: 6px 12px;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: 6px;
+  color: #4ade80;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.bulk-qty-btn:hover {
+  background: rgba(74, 222, 128, 0.2);
+  border-color: #4ade80;
+  transform: translateY(-2px);
+}
+
+.bulk-qty-btn.active {
+  background: #4ade80;
+  color: #000;
+  border-color: #4ade80;
+}
+
+.btn-discount {
+  font-size: 9px;
+  font-weight: 900;
+  opacity: 0.8;
+}
+
+.item-discount-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 3px 8px;
+  background: #4ade80;
+  color: #000;
+  font-size: 10px;
+  font-weight: 900;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.item-original-price {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: line-through;
+  margin-bottom: 2px;
+}
+
+/* Upsell Section with Quick Add */
 .upsell-card {
   border-color: rgba(138, 43, 226, 0.3);
 }
@@ -416,14 +486,13 @@
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  cursor: pointer;
   transition: all 0.3s ease;
+  align-items: center;
 }
 
 .upsell-item:hover {
   background: rgba(138, 43, 226, 0.1);
   border-color: rgba(138, 43, 226, 0.3);
-  transform: translateY(-2px);
 }
 
 .upsell-item img {
@@ -432,6 +501,11 @@
   object-fit: cover;
   border-radius: 8px;
   border: 2px solid rgba(138, 43, 226, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.upsell-item img:hover {
+  transform: scale(1.05);
 }
 
 .upsell-info {
@@ -447,6 +521,12 @@
   font-weight: 700;
   color: #fff;
   margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.upsell-info h4:hover {
+  color: #8a2be2;
 }
 
 .upsell-price {
@@ -454,6 +534,45 @@
   font-weight: 900;
   color: #8a2be2;
   margin: 0;
+}
+
+.upsell-quick-add {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #8a2be2, #9b59b6);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.upsell-quick-add:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(138, 43, 226, 0.5);
+}
+
+.upsell-quick-add:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner-small {
+  animation: spin 1s linear infinite;
+}
+
+.spinner-small .spinner-circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 25;
 }
 
 /* Mobile Responsive */
