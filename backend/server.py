@@ -520,10 +520,29 @@ async def complete_checkout(
             if not allocated:
                 raise HTTPException(status_code=500, detail="Failed to allocate tickets")
             
+            # Get instant win tickets for this order
+            instant_win_tickets = await db.tickets.find({
+                "order_id": order.id,
+                "competition_id": item["competition_id"],
+                "is_instant_win": True
+            }, {"_id": 0}).to_list(None)
+            
+            # Group instant wins by prize
+            instant_wins_grouped = {}
+            for ticket in instant_win_tickets:
+                prize_label = ticket.get("win_label", "")
+                if prize_label not in instant_wins_grouped:
+                    instant_wins_grouped[prize_label] = {
+                        "prize": prize_label,
+                        "ticket_numbers": []
+                    }
+                instant_wins_grouped[prize_label]["ticket_numbers"].append(ticket["ticket_number"])
+            
             tickets.append({
                 "competition_id": item["competition_id"],
                 "title": item["title"],
-                "numbers": allocated
+                "numbers": [{"number": num} for num in allocated],
+                "instant_wins": list(instant_wins_grouped.values())
             })
             
             # Update tickets_sold count
