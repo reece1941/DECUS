@@ -111,6 +111,8 @@ const CompetitionPage = () => {
 
   return (
     <div className="competition-page">
+      <Header />
+      
       {/* Background Effects */}
       <div className="decus-bg-effects">
         <div className="decus-bg-gradient" />
