@@ -1,0 +1,92 @@
+/* Competition Grid Styles */
+
+.decus-grid-wrapper {
+  position: relative;
+  padding: 20px 80px;
+  width: 100%;
+}
+
+.decus-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(25% - 22.5px);
+  gap: 30px;
+  overflow-x: hidden;
+  transition: transform 0.4s ease;
+  padding: 20px 0;
+  justify-content: flex-start;
+}
+
+.decus-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(0, 255, 255, 0.4);
+  border-radius: 50%;
+  color: #00ffff;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decus-carousel-arrow:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.4), rgba(138, 43, 226, 0.4));
+  border-color: #00ffff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.decus-carousel-arrow.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.decus-carousel-arrow.left {
+  left: 10px;
+}
+
+.decus-carousel-arrow.right {
+  right: 10px;
+}
+
+.decus-loading,
+.decus-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .decus-grid-wrapper {
+    padding: 20px 60px;
+  }
+  
+  .decus-grid {
+    grid-auto-columns: calc(50% - 15px);
+  }
+  
+  .decus-carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .decus-grid-wrapper {
+    padding: 20px 50px;
+  }
+}

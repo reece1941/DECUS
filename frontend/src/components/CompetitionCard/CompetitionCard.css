@@ -1,0 +1,329 @@
+/* Competition Card Styles */
+
+.decus-card {
+  background: rgba(22, 13, 33, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.4, 1), 
+              box-shadow 0.5s ease, 
+              border-color 0.4s ease;
+  position: relative;
+  min-width: 0;
+  animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.decus-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(138, 43, 226, 0.4), 
+              0 0 30px rgba(138, 43, 226, 0.3);
+  border-color: rgba(255, 215, 0, 0.5);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Image Section */
+.decus-img {
+  position: relative;
+  height: auto;
+  min-height: 280px;
+  overflow: hidden;
+  background: #000;
+}
+
+.decus-img img,
+.decus-img video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.7s ease;
+}
+
+.decus-card:hover .decus-img img,
+.decus-card:hover .decus-img video {
+  transform: scale(1.05);
+}
+
+.decus-img-link {
+  display: block;
+  height: 100%;
+  cursor: pointer;
+}
+
+/* Badges */
+.decus-badge {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 30px;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+.decus-hot {
+  top: 14px;
+  left: 14px;
+  background: linear-gradient(135deg, #ff0080, #ff6b00);
+  color: #fff;
+  animation: hotPulse 1.8s infinite;
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.6);
+}
+
+@keyframes hotPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.decus-instant {
+  top: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #00ffff, #0099ff);
+  color: #000;
+  border: 2px solid #00ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Countdown Badge */
+.decus-countdown-badge {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 16px 42px;
+  background: linear-gradient(135deg, rgba(0, 20, 80, 0.98), rgba(0, 10, 60, 0.98));
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(0, 100, 255, 0.7);
+  border-radius: 30px;
+  text-align: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 
+              0 0 40px rgba(0, 100, 255, 0.5);
+}
+
+.decus-countdown-badge .countdown-text {
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 100, 255, 0.7);
+}
+
+.decus-countdown-badge.ended {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 150, 0, 0.3));
+  border-color: rgba(255, 215, 0, 0.9);
+}
+
+.decus-countdown-badge.ended .countdown-text {
+  color: #ffd700;
+}
+
+/* Content Section */
+.decus-content {
+  padding: 24px;
+}
+
+.decus-title-card {
+  font-size: 1.35rem;
+  font-weight: 900;
+  margin-bottom: 6px;
+  color: #fff;
+  text-shadow: 0 0 2px #8a2be2, 0 0 6px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s ease;
+}
+
+.decus-title-card:hover {
+  color: #ffd700;
+}
+
+.decus-subtitle {
+  font-size: 0.8rem;
+  color: rgba(255, 215, 0, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 16px;
+}
+
+/* Price */
+.decus-price {
+  text-align: center;
+  margin: 18px 0;
+  padding: 14px;
+  background: rgba(255, 215, 0, 0.05);
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 215, 0, 0.3);
+}
+
+.decus-price .label {
+  font-size: 0.7rem;
+  color: rgba(255, 215, 0, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.decus-price .value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffd700;
+  text-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
+}
+
+/* Quantity Selector */
+.decus-qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.decus-qty-btn {
+  width: 44px;
+  height: 44px;
+  background: rgba(0, 255, 255, 0.05);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decus-qty-btn:hover:not(:disabled) {
+  background: rgba(0, 255, 255, 0.15);
+  border-color: #00ffff;
+  transform: scale(1.08);
+}
+
+.decus-qty-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.decus-qty-display {
+  min-width: 70px;
+  padding: 8px 16px;
+  background: rgba(0, 255, 255, 0.08);
+  border: 2px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #00ffff;
+}
+
+/* Total */
+.decus-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.decus-total span {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.decus-total .value {
+  font-weight: 900;
+  color: #ffd700;
+}
+
+/* Progress Bar */
+.decus-progress {
+  margin: 16px 0;
+}
+
+.decus-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+.decus-progress-label .value {
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.decus-progress-bar {
+  height: 6px;
+  background: rgba(0, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.decus-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #ffd700);
+  border-radius: 3px;
+  transition: width 1s ease;
+}
+
+/* Enter Button */
+.decus-enter {
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+.decus-enter:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+}
+
+.decus-enter.has-items {
+  background: linear-gradient(135deg, #00ffff, #0099ff);
+  color: #000;
+}
+
+.decus-enter .badge {
+  background: #ff0080;
+  color: #fff;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
