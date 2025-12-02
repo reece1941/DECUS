@@ -63,21 +63,21 @@
   cursor: pointer;
 }
 
-/* Badges */
+/* Badges - Much Smaller */
 .decus-badge {
   position: absolute;
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.45rem;
   font-weight: 900;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   z-index: 2;
 }
 
 .decus-hot {
-  top: 14px;
-  left: 14px;
+  top: 10px;
+  left: 10px;
   background: linear-gradient(135deg, #ff0080, #ff6b00);
   color: #fff;
   animation: hotPulse 1.8s infinite;
@@ -94,11 +94,11 @@
 }
 
 .decus-instant {
-  top: 14px;
-  right: 14px;
+  top: 10px;
+  right: 10px;
   background: linear-gradient(135deg, #00ffff, #0099ff);
   color: #000;
-  border: 2px solid #00ffff;
+  border: 1.5px solid #00ffff;
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
