@@ -329,3 +329,104 @@
   align-items: center;
   justify-content: center;
 }
+
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .decus-card {
+    margin-top: 24px;
+  }
+
+  .decus-countdown-badge {
+    padding: 10px 24px;
+    font-size: 0.75rem;
+    letter-spacing: 0.8px;
+  }
+
+  .decus-badge {
+    padding: 4px 10px;
+    font-size: 0.55rem;
+    letter-spacing: 0.5px;
+  }
+
+  .decus-img {
+    min-height: 200px;
+  }
+
+  .decus-content {
+    padding: 16px;
+  }
+
+  .decus-title-card {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .decus-subtitle {
+    font-size: 0.65rem;
+    letter-spacing: 0.8px;
+    margin-bottom: 12px;
+  }
+
+  .decus-price {
+    margin: 12px 0;
+    padding: 10px;
+  }
+
+  .decus-price .label {
+    font-size: 0.6rem;
+  }
+
+  .decus-price .value {
+    font-size: 1.6rem;
+  }
+
+  .decus-qty-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+
+  .decus-qty-val {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
+  .decus-sold {
+    padding: 8px;
+    margin: 12px 0;
+  }
+
+  .decus-sold .sold-text {
+    font-size: 0.65rem;
+  }
+
+  .decus-sold .sold-percent {
+    font-size: 1rem;
+  }
+
+  .decus-progress-bar {
+    height: 6px;
+  }
+
+  .decus-enter {
+    padding: 12px 20px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .decus-countdown-badge {
+    padding: 8px 20px;
+    font-size: 0.7rem;
+  }
+
+  .decus-title-card {
+    font-size: 0.9rem;
+  }
+
+  .decus-price .value {
+    font-size: 1.4rem;
+  }
+}
