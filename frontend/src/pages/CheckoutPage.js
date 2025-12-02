@@ -17,6 +17,7 @@ const CheckoutPage = () => {
   const [couponLoading, setCouponLoading] = useState(false);
   const [couponSuccess, setCouponSuccess] = useState(false);
   const [upsellCompetitions, setUpsellCompetitions] = useState([]);
+  const [addingUpsell, setAddingUpsell] = useState(null);
 
   useEffect(() => {
     if (cart.items.length === 0) {
