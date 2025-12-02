@@ -83,6 +83,13 @@ const CompetitionCard = ({ competition }) => {
 
   return (
     <article className="decus-card">
+      {/* Countdown Badge - Above the card */}
+      {timeLeft && (
+        <div className={`decus-countdown-badge ${timeLeft === 'ENDED' ? 'ended' : ''}`}>
+          <span className="countdown-text">{timeLeft}</span>
+        </div>
+      )}
+      
       {/* Image Section */}
       <div className="decus-img">
         {competition.hot && (
@@ -91,11 +98,6 @@ const CompetitionCard = ({ competition }) => {
         {competition.instant && (
           <div className="decus-badge decus-instant">INSTANTS</div>
         )}
-        
-        {/* Countdown Badge */}
-        <div className={`decus-countdown-badge ${timeLeft === 'ENDED' ? 'ended' : ''}`}>
-          <span className="countdown-text">{timeLeft || 'Loading...'}</span>
-        </div>
         
         <div className="decus-img-link" onClick={() => navigate(`/competition/${competition.id}`)}>
           {competition.video ? (
