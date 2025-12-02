@@ -206,3 +206,5 @@ agent_communication:
     - message: "Starting comprehensive testing of the complete competition platform flow. Will test all major user journeys including homepage grid, authentication, competition details, cart functionality, and checkout process."
     - agent: "testing"
     - message: "TESTING COMPLETED: Homepage and Competition Detail pages working perfectly. CRITICAL ISSUE: Authentication failing with demo credentials (demo@example.com/password123) - backend returns 401 Unauthorized. This blocks cart and checkout flow testing. Need to investigate authentication backend or provide working credentials."
+    - agent: "testing"
+    - message: "RE-TESTING COMPLETED WITH CORRECT CREDENTIALS: All flows now working perfectly! Authentication successful with test@decus.com/test123 credentials (user balance £500.00). Add to cart flow working (5 tickets, £14.95 total). Checkout flow complete with Site Credit payment method. Order #1001 generated with ticket numbers. All major user journeys functioning correctly end-to-end."
