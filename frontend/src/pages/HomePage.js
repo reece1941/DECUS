@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { competitionsAPI } from '../services/api';
 import CompetitionGrid from '../components/CompetitionGrid/CompetitionGrid';
-import UserDashboard from '../components/UserDashboard/UserDashboard';
+import UserDashboardPro from '../components/UserDashboard/UserDashboardPro';
 import Header from '../components/Header/Header';
 import { useAuth } from '../contexts/AuthContext';
 
