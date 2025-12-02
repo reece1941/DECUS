@@ -151,9 +151,6 @@ const CompetitionPage = () => {
               
               {/* Badges */}
               <div className="decus-badges">
-                {competition.instant && (
-                  <div className="decus-badge decus-instant">⚡ INSTANT</div>
-                )}
                 {competition.hot && (
                   <div className="decus-badge decus-hot">🔥 HOT</div>
                 )}
