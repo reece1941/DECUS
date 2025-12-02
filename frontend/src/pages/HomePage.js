@@ -41,6 +41,9 @@ const HomePage = () => {
     <div className="home-page">
       <Header />
       
+      {/* Hero Carousel */}
+      <HeroCarousel competitions={competitions.filter(c => c.hot || c.instant).slice(0, 3)} />
+      
       {/* Navigation Tabs */}
       <nav className="decus-nav">
         <div className="decus-nav-tabs">
