@@ -41,6 +41,7 @@
   min-height: 280px;
   overflow: hidden;
   background: #000;
+  border-radius: 20px 20px 0 0;
 }
 
 .decus-img img,
