@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { competitionsAPI } from '../services/api';
 import CompetitionGrid from '../components/CompetitionGrid/CompetitionGrid';
 import UserDashboard from '../components/UserDashboard/UserDashboard';
+import Header from '../components/Header/Header';
 import { useAuth } from '../contexts/AuthContext';
 
 const HomePage = () => {
@@ -37,6 +38,8 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      <Header />
+      
       {/* Navigation Tabs */}
       <nav className="decus-nav">
         <div className="decus-nav-tabs">
