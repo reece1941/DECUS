@@ -122,9 +122,9 @@ const AuthModal = ({ isOpen, onClose }) => {
           <p style={{ fontSize: '0.85rem', opacity: 0.7, marginTop: '20px' }}>
             Demo credentials:
             <br />
-            Email: demo@example.com
+            Email: test@decus.com
             <br />
-            Password: password123
+            Password: test123
           </p>
         </div>
       </div>
