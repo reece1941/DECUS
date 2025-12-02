@@ -187,15 +187,16 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Homepage & Grid Layout"
     - "Authentication Flow"
-    - "Competition Detail Page"
     - "Add to Cart Flow"
     - "Checkout Flow"
-  stuck_tasks: []
-  test_all: true
-  test_priority: "sequential"
+  stuck_tasks:
+    - "Authentication Flow"
+  test_all: false
+  test_priority: "stuck_first"
 
 agent_communication:
     - agent: "testing"
     - message: "Starting comprehensive testing of the complete competition platform flow. Will test all major user journeys including homepage grid, authentication, competition details, cart functionality, and checkout process."
+    - agent: "testing"
+    - message: "TESTING COMPLETED: Homepage and Competition Detail pages working perfectly. CRITICAL ISSUE: Authentication failing with demo credentials (demo@example.com/password123) - backend returns 401 Unauthorized. This blocks cart and checkout flow testing. Need to investigate authentication backend or provide working credentials."
