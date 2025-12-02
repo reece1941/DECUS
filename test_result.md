@@ -122,9 +122,9 @@ frontend:
 
   - task: "Authentication Flow"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/components/AuthModal/AuthModal.js"
-    stuck_count: 1
+    stuck_count: 0
     priority: "high"
     needs_retesting: false
     status_history:
@@ -134,6 +134,9 @@ frontend:
         - working: false
         - agent: "testing"
         - comment: "❌ FAILED: Demo credentials (demo@example.com/password123) return 'Invalid credentials' error. Authentication modal opens correctly, form fields work, but backend returns 401 Unauthorized. This blocks cart and checkout testing."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ PASSED: Authentication flow working correctly with correct credentials (test@decus.com/test123). User balance displays £500.00, Cart button appears in header, Logout button appears. Authentication modal opens and closes properly. All authentication indicators working as expected."
 
   - task: "Competition Detail Page"
     implemented: true
