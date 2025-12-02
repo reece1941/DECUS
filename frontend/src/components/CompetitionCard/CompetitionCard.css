@@ -439,6 +439,23 @@
     letter-spacing: 0.5px;
   }
 
+  .decus-badge {
+    padding: 2px 6px;
+    font-size: 0.45rem;
+    letter-spacing: 0.2px;
+    border-radius: 12px;
+  }
+
+  .decus-hot {
+    top: 8px;
+    left: 8px;
+  }
+
+  .decus-instant {
+    top: 8px;
+    right: 8px;
+  }
+
   .decus-title-card {
     font-size: 0.9rem;
   }
