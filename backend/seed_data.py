@@ -102,8 +102,22 @@ async def seed():
                 {
                     "name": "£50 Site Credit",
                     "qty": 10,
-                    "numbers": "123,456,789,1234,5678",
+                    "numbers": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                     "amount": 50.0,
+                    "wallet_type": "site_credit"
+                },
+                {
+                    "name": "£20 Site Credit",
+                    "qty": 5,
+                    "numbers": "21,22,23,24,25",
+                    "amount": 20.0,
+                    "wallet_type": "site_credit"
+                },
+                {
+                    "name": "£10 Site Credit",
+                    "qty": 5,
+                    "numbers": "26,27,28,29,30",
+                    "amount": 10.0,
                     "wallet_type": "site_credit"
                 }
             ],
