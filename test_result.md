@@ -155,11 +155,11 @@ frontend:
 
   - task: "Add to Cart Flow"
     implemented: true
-    working: false
+    working: true
     file: "/app/frontend/src/contexts/CartContext.js"
-    stuck_count: 1
+    stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
@@ -167,6 +167,9 @@ frontend:
         - working: false
         - agent: "testing"
         - comment: "❌ BLOCKED: Cannot test cart flow due to authentication failure. ENTER COMPETITION button correctly prompts for login when not authenticated, but cannot proceed with testing due to invalid demo credentials."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ PASSED: Add to cart flow working perfectly. Successfully selected 5 tickets using quantity selector, clicked ENTER COMPETITION button, redirected to /cart page. Cart displays items correctly (£2,400 RENT COVERED), shows quantity (Price: £2.99 x 5), and displays total (Total: £14.95). All cart functionality working as expected."
 
   - task: "Checkout Flow"
     implemented: true
