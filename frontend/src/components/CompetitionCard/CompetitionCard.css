@@ -387,6 +387,9 @@
     font-size: 0.65rem;
     letter-spacing: 0.8px;
     margin-bottom: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .decus-price {
