@@ -3,6 +3,7 @@ import { competitionsAPI } from '../services/api';
 import CompetitionGrid from '../components/CompetitionGrid/CompetitionGrid';
 import UserDashboardPro from '../components/UserDashboard/UserDashboardPro';
 import Header from '../components/Header/Header';
+import HeroCarousel from '../components/HeroCarousel/HeroCarousel';
 import { useAuth } from '../contexts/AuthContext';
 
 const HomePage = () => {
