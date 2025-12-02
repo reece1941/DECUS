@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { competitionsAPI } from '../services/api';
 import { useCart } from '../contexts/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import Header from '../components/Header/Header';
 import './CompetitionPage.css';
 
 const CompetitionPage = () => {
