@@ -19,6 +19,7 @@ from auth import (
     get_current_user, get_current_admin_user
 )
 from ticket_allocator import allocate_tickets
+from payment_routes import router as payment_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
