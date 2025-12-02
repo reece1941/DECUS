@@ -131,26 +131,60 @@
 }
 
 @media (max-width: 768px) {
+  .app-header {
+    padding: 12px 0;
+  }
+
   .header-container {
-    padding: 0 16px;
+    padding: 0 12px;
   }
 
   .logo-text {
-    font-size: 20px;
+    font-size: 18px;
+    letter-spacing: 0.5px;
   }
 
   .logo-icon {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .user-balance {
     display: none;
   }
 
+  .header-actions {
+    gap: 8px;
+  }
+
   .cart-btn,
   .login-btn,
   .logout-btn {
-    padding: 10px 16px;
-    font-size: 12px;
+    padding: 8px 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .cart-btn svg,
+  .login-btn svg,
+  .logout-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 16px;
+  }
+
+  .logo-icon {
+    font-size: 22px;
+  }
+
+  .cart-btn,
+  .login-btn,
+  .logout-btn {
+    padding: 8px 10px;
+    font-size: 0.65rem;
   }
 }
