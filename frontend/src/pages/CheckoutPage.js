@@ -8,7 +8,7 @@ import './CheckoutPage.css';
 
 const CheckoutPage = () => {
   const navigate = useNavigate();
-  const { cart, total, subtotal, clearCart, applyCoupon } = useCart();
+  const { cart, total, subtotal, clearCart, applyCoupon, updateQuantity, addToCart } = useCart();
   const { user } = useAuth();
   const [paymentMethod, setPaymentMethod] = useState('site_credit');
   const [loading, setLoading] = useState(false);
@@ -89,13 +89,12 @@ const CheckoutPage = () => {
     return balance >= total;
   };
 
-  const handleBulkUpdate = async (itemId, newQuantity) => {
-    await updateQuantity(itemId, newQuantity);
+  const handleBulkUpdate = async (competitionId, newQuantity) => {
+    await updateQuantity(competitionId, newQuantity);
   };
 
   const handleQuickAddUpsell = async (comp) => {
     setAddingUpsell(comp.id);
-    const { addToCart } = useCart();
     await addToCart({
       competition_id: comp.id,
       title: comp.title,
@@ -104,7 +103,15 @@ const CheckoutPage = () => {
       image: comp.image || comp.video,
     });
     setAddingUpsell(null);
-    fetchUpsellCompetitions();
+    await fetchUpsellCompetitions();
+  };
+
+  const getBulkDiscount = (quantity) => {
+    if (quantity >= 100) return 20;
+    if (quantity >= 50) return 15;
+    if (quantity >= 25) return 10;
+    if (quantity >= 10) return 5;
+    return 0;
   };
 
   return (
@@ -124,22 +131,51 @@ const CheckoutPage = () => {
               </h2>
               
               <div className="order-items">
-                {cart.items.map((item, index) => (
-                  <div key={index} className="order-item">
-                    <div className="item-image">
-                      <img src={item.image || 'https://via.placeholder.com/80'} alt={item.title} />
+                {cart.items.map((item, index) => {
+                  const discount = getBulkDiscount(item.quantity);
+                  const itemTotal = item.price * item.quantity;
+                  const discountedTotal = itemTotal * (1 - discount / 100);
+                  
+                  return (
+                    <div key={index} className="order-item">
+                      <div className="item-image">
+                        <img src={item.image || 'https://via.placeholder.com/80'} alt={item.title} />
+                        {discount > 0 && (
+                          <div className="item-discount-badge">{discount}% OFF</div>
+                        )}
+                      </div>
+                      <div className="item-details">
+                        <h4 className="item-title">{item.title}</h4>
+                        <p className="item-meta">
+                          £{item.price.toFixed(2)} × {item.quantity} tickets
+                        </p>
+                        
+                        {/* Bulk Discount Buttons */}
+                        <div className="bulk-discount-btns">
+                          <span className="bulk-label">Quick Update:</span>
+                          {[10, 25, 50, 100].map(qty => (
+                            <button
+                              key={qty}
+                              onClick={() => handleBulkUpdate(item.competition_id, qty)}
+                              className={`bulk-qty-btn ${item.quantity === qty ? 'active' : ''}`}
+                            >
+                              {qty}
+                              {getBulkDiscount(qty) > 0 && (
+                                <span className="btn-discount">-{getBulkDiscount(qty)}%</span>
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="item-total">
+                        {discount > 0 && (
+                          <div className="item-original-price">£{itemTotal.toFixed(2)}</div>
+                        )}
+                        £{discountedTotal.toFixed(2)}
+                      </div>
                     </div>
-                    <div className="item-details">
-                      <h4 className="item-title">{item.title}</h4>
-                      <p className="item-meta">
-                        £{item.price.toFixed(2)} × {item.quantity} tickets
-                      </p>
-                    </div>
-                    <div className="item-total">
-                      £{(item.price * item.quantity).toFixed(2)}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="order-breakdown">
@@ -318,7 +354,7 @@ const CheckoutPage = () => {
               </div>
             </div>
 
-            {/* Upsell Section */}
+            {/* Upsell Section with Quick Add */}
             {upsellCompetitions.length > 0 && (
               <div className="checkout-card upsell-card">
                 <h3 className="upsell-title">
@@ -332,13 +368,38 @@ const CheckoutPage = () => {
                     <div
                       key={comp.id}
                       className="upsell-item"
-                      onClick={() => navigate(`/competition/${comp.id}`)}
                     >
-                      <img src={comp.image} alt={comp.title} />
+                      <img 
+                        src={comp.image} 
+                        alt={comp.title}
+                        onClick={() => navigate(`/competition/${comp.id}`)}
+                        style={{ cursor: 'pointer' }}
+                      />
                       <div className="upsell-info">
-                        <h4>{comp.title}</h4>
-                        <p className="upsell-price">From £{comp.price.toFixed(2)}</p>
+                        <h4 onClick={() => navigate(`/competition/${comp.id}`)}>{comp.title}</h4>
+                        <p className="upsell-price">£{comp.price.toFixed(2)}</p>
                       </div>
+                      <button
+                        onClick={() => handleQuickAddUpsell(comp)}
+                        disabled={addingUpsell === comp.id}
+                        className="upsell-quick-add"
+                      >
+                        {addingUpsell === comp.id ? (
+                          <>
+                            <svg className="spinner-small" width="14" height="14" viewBox="0 0 24 24">
+                              <circle className="spinner-circle" cx="12" cy="12" r="10" />
+                            </svg>
+                            Adding...
+                          </>
+                        ) : (
+                          <>
+                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                            </svg>
+                            Quick Add
+                          </>
+                        )}
+                      </button>
                     </div>
                   ))}
                 </div>
