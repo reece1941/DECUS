@@ -150,9 +150,16 @@ async def seed():
             "instant_wins": [
                 {
                     "name": "£100 Cash",
-                    "qty": 5,
-                    "numbers": "111,222,333,444,555",
+                    "qty": 10,
+                    "numbers": "1,2,3,4,5,6,7,8,9,10",
                     "amount": 100.0,
+                    "wallet_type": "cash"
+                },
+                {
+                    "name": "£50 Cash",
+                    "qty": 5,
+                    "numbers": "11,12,13,14,15",
+                    "amount": 50.0,
                     "wallet_type": "cash"
                 }
             ],
