@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Test the complete competition platform flow on https://rafflestack.preview.emergentagent.com"
+user_problem_statement: "Test the complete competition platform flow on https://win-wizard-1.preview.emergentagent.com"
 
 frontend:
   - task: "Homepage & Grid Layout"
