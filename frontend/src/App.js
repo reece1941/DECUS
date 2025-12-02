@@ -10,6 +10,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import ThankYouPage from './pages/ThankYouPage';
 import ReceiptPage from './pages/ReceiptPage';
 import AdminDashboard from './pages/AdminDashboard';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
@@ -18,15 +19,18 @@ function App() {
       <ThemeProvider>
         <AuthProvider>
           <CartProvider>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/competition/:id" element={<CompetitionPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/thank-you" element={<ThankYouPage />} />
-              <Route path="/receipt" element={<ReceiptPage />} />
-              <Route path="/admin/*" element={<AdminDashboard />} />
-            </Routes>
+            <div className="app-container">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/competition/:id" element={<CompetitionPage />} />
+                <Route path="/cart" element={<CartPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/thank-you" element={<ThankYouPage />} />
+                <Route path="/receipt" element={<ReceiptPage />} />
+                <Route path="/admin/*" element={<AdminDashboard />} />
+              </Routes>
+              <Footer />
+            </div>
           </CartProvider>
         </AuthProvider>
       </ThemeProvider>
