@@ -2,62 +2,17 @@
 
 .decus-grid-wrapper {
   position: relative;
-  padding: 20px 80px;
+  padding: 40px 20px;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .decus-grid {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc(25% - 22.5px);
-  gap: 30px;
-  overflow-x: hidden;
-  transition: transform 0.4s ease;
-  padding: 20px 0;
-  justify-content: flex-start;
-}
-
-.decus-carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.2), rgba(138, 43, 226, 0.2));
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 2px solid rgba(0, 255, 255, 0.4);
-  border-radius: 50%;
-  color: #00ffff;
-  font-size: 24px;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.decus-carousel-arrow:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.4), rgba(138, 43, 226, 0.4));
-  border-color: #00ffff;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-}
-
-.decus-carousel-arrow.disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.decus-carousel-arrow.left {
-  left: 10px;
-}
-
-.decus-carousel-arrow.right {
-  right: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  padding: 0;
 }
 
 .decus-loading,
@@ -66,27 +21,37 @@
   padding: 60px 20px;
   color: rgba(255, 255, 255, 0.6);
   font-size: 18px;
+  grid-column: 1 / -1;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
+/* Desktop: 4 columns */
+@media (min-width: 1024px) {
   .decus-grid-wrapper {
-    padding: 20px 60px;
+    padding: 60px 40px;
   }
   
   .decus-grid {
-    grid-auto-columns: calc(50% - 15px);
-  }
-  
-  .decus-carousel-arrow {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
   }
 }
 
-@media (max-width: 640px) {
+/* Tablet: 3 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .decus-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Mobile: 2 columns */
+@media (max-width: 767px) {
   .decus-grid-wrapper {
-    padding: 20px 50px;
+    padding: 30px 16px;
+  }
+  
+  .decus-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
