@@ -895,6 +895,124 @@ const CompetitionForm = () => {
             )}
           </section>
 
+          {/* Prize Benefits Section */}
+          <section className="form-section">
+            <h2 className="section-title">Prize Benefits</h2>
+            <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+              Bullet points highlighting key benefits of winning this prize. Shown on competition detail page.
+            </p>
+
+            <div className="form-group">
+              <label>Select Preset (Optional)</label>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+                <button type="button" onClick={() => handleBenefitsPreset('none')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Clear</button>
+                <button type="button" onClick={() => handleBenefitsPreset('cash')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Cash Prize</button>
+                <button type="button" onClick={() => handleBenefitsPreset('property')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Property</button>
+                <button type="button" onClick={() => handleBenefitsPreset('car')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Car</button>
+                <button type="button" onClick={() => handleBenefitsPreset('experience')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Experience</button>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="benefits">Benefits (One Per Line)</label>
+              <textarea
+                id="benefits"
+                value={benefitsInput}
+                onChange={handleBenefitsChange}
+                placeholder="Enter each benefit on a new line, e.g.:
+Tax-free cash prize
+Instant bank transfer
+No purchase necessary
+Guaranteed payout"
+                rows={6}
+                style={{ fontFamily: 'inherit', fontSize: '14px' }}
+              />
+              <small style={{ color: '#666', fontSize: '12px' }}>
+                {formData.benefits.length} benefit{formData.benefits.length !== 1 ? 's' : ''} entered
+              </small>
+            </div>
+          </section>
+
+          {/* How It Works Section */}
+          <section className="form-section">
+            <h2 className="section-title">How It Works</h2>
+            <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+              Step-by-step instructions shown on competition detail page. One step per line.
+            </p>
+
+            <div className="form-group">
+              <label>Select Preset (Optional)</label>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
+                <button type="button" onClick={() => handleHowItWorksPreset('none')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Clear</button>
+                <button type="button" onClick={() => handleHowItWorksPreset('standard')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Standard</button>
+                <button type="button" onClick={() => handleHowItWorksPreset('instant')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Instant Win</button>
+                <button type="button" onClick={() => handleHowItWorksPreset('rolling')} style={{ padding: '6px 12px', background: '#e9ecef', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px' }}>Rolling</button>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="how_it_works">Steps (One Per Line)</label>
+              <textarea
+                id="how_it_works"
+                value={howItWorksInput}
+                onChange={handleHowItWorksChange}
+                placeholder="Enter each step on a new line, e.g.:
+Purchase your competition tickets
+Live draw conducted at competition end
+Winner verification within 48 hours
+Prize delivered or transferred to winner"
+                rows={6}
+                style={{ fontFamily: 'inherit', fontSize: '14px' }}
+              />
+              <small style={{ color: '#666', fontSize: '12px' }}>
+                {formData.how_it_works.length} step{formData.how_it_works.length !== 1 ? 's' : ''} entered
+              </small>
+            </div>
+          </section>
+
+          {/* Bulk Bundles Section */}
+          <section className="form-section">
+            <h2 className="section-title">Bulk Bundle Discounts</h2>
+            <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+              Set discounted pricing for bulk ticket purchases. Format: quantity:discount_percent
+            </p>
+
+            <div className="form-group">
+              <label htmlFor="bulk_bundles">Bundle Configuration</label>
+              <input
+                id="bulk_bundles"
+                type="text"
+                value={bulkBundlesInput}
+                onChange={handleBulkBundlesChange}
+                placeholder="10:0,25:5,50:10,100:15"
+                style={{ fontFamily: 'monospace', fontSize: '14px' }}
+              />
+              <small style={{ color: '#666', fontSize: '12px', display: 'block', marginTop: '4px' }}>
+                Format: quantity:discount% separated by commas. Example: 10:0,25:5,50:10,100:15
+              </small>
+              <small style={{ color: '#666', fontSize: '12px', display: 'block', marginTop: '4px' }}>
+                This means: 10 tickets (0% off), 25 tickets (5% off), 50 tickets (10% off), 100 tickets (15% off)
+              </small>
+            </div>
+
+            {formData.bulk_bundles.length > 0 && (
+              <div style={{ background: '#f8f9fa', padding: '16px', borderRadius: '6px', marginTop: '12px' }}>
+                <strong style={{ fontSize: '14px' }}>Preview:</strong>
+                <div style={{ marginTop: '8px' }}>
+                  {formData.bulk_bundles.map((bundle, index) => {
+                    const originalPrice = formData.price ? parseFloat(formData.price) * bundle.quantity : 0;
+                    const discountedPrice = originalPrice * (1 - bundle.discount_percent / 100);
+                    return (
+                      <div key={index} style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+                        {bundle.quantity} tickets: £{discountedPrice.toFixed(2)} ({bundle.discount_percent}% off)
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </section>
+
           {/* Form Actions */}
           <div className="form-actions">
             <button
