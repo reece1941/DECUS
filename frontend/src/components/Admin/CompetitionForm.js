@@ -13,16 +13,24 @@ const CompetitionForm = () => {
     subtitle: '',
     description: '',
     price: '',
+    sale_price: '',
     max_tickets: '',
+    max_tickets_per_user: '',
     sold: 0,
     image: '',
     video: '',
+    category: 'all',
     tags: [],
     hot: false,
     instant: false,
     prize_value: '',
     end_datetime: '',
+    instant_win_image: '',
+    instant_win_type: 'site_credit',
+    instant_win_ticket_numbers: [],
   });
+
+  const [instantWinTicketsInput, setInstantWinTicketsInput] = useState('');
 
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
