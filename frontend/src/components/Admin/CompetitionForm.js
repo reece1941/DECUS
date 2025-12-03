@@ -177,15 +177,31 @@ const CompetitionForm = () => {
     try {
       setLoading(true);
 
+      // Clean up payload - remove any fields that shouldn't be sent
       const payload = {
-        ...formData,
+        title: formData.title,
+        subtitle: formData.subtitle || '',
+        description: formData.description || '',
         price: parseFloat(formData.price),
-        sale_price: formData.sale_price && formData.sale_price.trim() !== '' ? parseFloat(formData.sale_price) : null,
+        sale_price: formData.sale_price && formData.sale_price.toString().trim() !== '' ? parseFloat(formData.sale_price) : null,
+        video: formData.video || '',
+        image: formData.image || '',
+        hot: formData.hot || false,
+        instant: formData.instant || false,
         max_tickets: parseInt(formData.max_tickets),
-        max_tickets_per_user: formData.max_tickets_per_user && formData.max_tickets_per_user.trim() !== '' ? parseInt(formData.max_tickets_per_user) : null,
-        sold: parseInt(formData.sold) || 0,
-        prize_value: formData.prize_value && formData.prize_value.trim() !== '' ? parseFloat(formData.prize_value) : null,
-        instant_wins_found: 0, // Auto field
+        max_tickets_per_user: formData.max_tickets_per_user && formData.max_tickets_per_user.toString().trim() !== '' ? parseInt(formData.max_tickets_per_user) : null,
+        tickets_sold: 0,
+        sold_override: parseInt(formData.sold) || 0,
+        end_datetime: formData.end_datetime || '',
+        category: formData.category || 'all',
+        tags: formData.tags || [],
+        instant_wins: [],
+        instant_win_image: formData.instant_win_image || '',
+        instant_win_type: formData.instant_win_type || 'site_credit',
+        instant_win_ticket_numbers: formData.instant_win_ticket_numbers || [],
+        instant_wins_found: 0,
+        prize_value: formData.prize_value && formData.prize_value.toString().trim() !== '' ? formData.prize_value.toString() : '0',
+        benefits: []
       };
 
       console.log('Submitting payload:', payload);
