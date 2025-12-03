@@ -28,9 +28,46 @@ const CompetitionForm = () => {
     instant_win_image: '',
     instant_win_type: 'site_credit',
     instant_win_ticket_numbers: [],
+    benefits: [],
+    how_it_works: [],
+    bulk_bundles: [],
   });
 
   const [instantWinTicketsInput, setInstantWinTicketsInput] = useState('');
+  const [benefitsInput, setBenefitsInput] = useState('');
+  const [howItWorksInput, setHowItWorksInput] = useState('');
+  const [bulkBundlesInput, setBulkBundlesInput] = useState('10:0,25:5,50:10,100:15');
+
+  // Preset options
+  const benefitsPresets = {
+    none: [],
+    cash: ['Tax-free cash prize', 'Instant bank transfer', 'No purchase necessary', 'Guaranteed payout'],
+    property: ['Property transfer included', 'All legal fees covered', 'Stamp duty paid', 'Ready to move in'],
+    car: ['Full insurance for 1 year', 'Road tax paid', 'Delivery to your door', 'Full manufacturer warranty'],
+    experience: ['All expenses paid', '5-star accommodation', 'Premium flight tickets', 'VIP treatment throughout']
+  };
+
+  const howItWorksPresets = {
+    none: [],
+    standard: [
+      { step_number: 1, step_text: 'Purchase your competition tickets' },
+      { step_number: 2, step_text: 'Live draw conducted at competition end' },
+      { step_number: 3, step_text: 'Winner verification within 48 hours' },
+      { step_number: 4, step_text: 'Prize delivered or transferred to winner' }
+    ],
+    instant: [
+      { step_number: 1, step_text: 'Choose your ticket quantity' },
+      { step_number: 2, step_text: 'Reveal instant wins immediately' },
+      { step_number: 3, step_text: 'Main prize drawn at competition end' },
+      { step_number: 4, step_text: 'All prizes credited or delivered' }
+    ],
+    rolling: [
+      { step_number: 1, step_text: 'Buy tickets for the rolling jackpot' },
+      { step_number: 2, step_text: 'Weekly draws every Friday' },
+      { step_number: 3, step_text: 'Jackpot rolls over if not won' },
+      { step_number: 4, step_text: 'Winners announced within 24 hours' }
+    ]
+  };
 
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
