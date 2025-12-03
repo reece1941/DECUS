@@ -78,6 +78,8 @@ class CompetitionCreate(BaseModel):
     instant_wins_found: int = 0
     prize_value: str = "0"
     benefits: List[str] = []
+    how_it_works: List[HowItWorksStep] = []
+    bulk_bundles: List[BulkBundle] = []
 
 
 class ThemeSettings(BaseModel):
