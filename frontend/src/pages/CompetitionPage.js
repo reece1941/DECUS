@@ -319,13 +319,32 @@ const CompetitionPage = () => {
                   >
                     −
                   </button>
-                  <div className="decus-qty-display">
-                    <span className="qty-val">{quantity}</span>
-                  </div>
+                  <input
+                    type="number"
+                    className="decus-qty-input"
+                    value={quantity}
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value) || 1;
+                      handleQuantityChange(Math.max(1, Math.min(competition.max_tickets_per_user || 1000, val)));
+                    }}
+                    min="1"
+                    max={competition.max_tickets_per_user || 1000}
+                    style={{
+                      width: '80px',
+                      textAlign: 'center',
+                      border: '2px solid #e0e0e0',
+                      borderRadius: '8px',
+                      padding: '8px',
+                      fontSize: '18px',
+                      fontWeight: '700',
+                      color: '#000',
+                      background: '#fff'
+                    }}
+                  />
                   <button 
                     className="decus-qty-btn plus" 
                     onClick={() => handleQuantityChange(quantity + 1)}
-                    disabled={quantity >= 100}
+                    disabled={quantity >= (competition.max_tickets_per_user || 1000)}
                   >
                     +
                   </button>
