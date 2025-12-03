@@ -270,6 +270,25 @@ const CompetitionForm = () => {
             </div>
 
             <div className="form-group">
+              <label htmlFor="category" className="required">
+                Category
+              </label>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="all">All</option>
+                <option value="jackpot">Jackpot</option>
+                <option value="spin">Spin</option>
+                <option value="instawin">Instawin</option>
+                <option value="rolling">Rolling</option>
+                <option value="vip">VIP</option>
+              </select>
+            </div>
+
+            <div className="form-group">
               <label htmlFor="description" className="required">
                 Description
               </label>
