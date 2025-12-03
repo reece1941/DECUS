@@ -20,16 +20,23 @@ class Competition(BaseModel):
     subtitle: str = ""
     description: str = ""
     price: float
+    sale_price: Optional[float] = None
     video: str = ""
     image: str = ""
     hot: bool = False
     instant: bool = False
     max_tickets: int
+    max_tickets_per_user: Optional[int] = None
     tickets_sold: int = 0
     sold_override: int = 0  # Manual override for sold %
     end_datetime: str = ""  # ISO format
+    category: str = "all"  # jackpot, spin, instawin, rolling, vip, all
     tags: List[str] = []  # ["jackpot", "spin", "instawins", "rolling", "vip"]
     instant_wins: List[InstantWin] = []
+    instant_win_image: str = ""
+    instant_win_type: str = "site_credit"  # cash or site_credit
+    instant_win_ticket_numbers: List[int] = []
+    instant_wins_found: int = 0
     prize_value: str = "0"
     benefits: List[str] = []
     product_id: str = ""
