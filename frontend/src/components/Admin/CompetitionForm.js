@@ -159,6 +159,84 @@ const CompetitionForm = () => {
     }));
   };
 
+  const handleBenefitsChange = (e) => {
+    const value = e.target.value;
+    setBenefitsInput(value);
+    
+    // Parse line-separated benefits
+    const benefits = value
+      .split('\n')
+      .map(b => b.trim())
+      .filter(b => b !== '');
+    
+    setFormData((prev) => ({
+      ...prev,
+      benefits: benefits,
+    }));
+  };
+
+  const handleBenefitsPreset = (preset) => {
+    const benefits = benefitsPresets[preset];
+    setBenefitsInput(benefits.join('\n'));
+    setFormData((prev) => ({
+      ...prev,
+      benefits: benefits,
+    }));
+  };
+
+  const handleHowItWorksChange = (e) => {
+    const value = e.target.value;
+    setHowItWorksInput(value);
+    
+    // Parse line-separated steps
+    const steps = value
+      .split('\n')
+      .map(s => s.trim())
+      .filter(s => s !== '')
+      .map((text, index) => ({
+        step_number: index + 1,
+        step_text: text
+      }));
+    
+    setFormData((prev) => ({
+      ...prev,
+      how_it_works: steps,
+    }));
+  };
+
+  const handleHowItWorksPreset = (preset) => {
+    const steps = howItWorksPresets[preset];
+    setHowItWorksInput(steps.map(s => s.step_text).join('\n'));
+    setFormData((prev) => ({
+      ...prev,
+      how_it_works: steps,
+    }));
+  };
+
+  const handleBulkBundlesChange = (e) => {
+    const value = e.target.value;
+    setBulkBundlesInput(value);
+    
+    // Parse format: quantity:discount,quantity:discount
+    const bundles = value
+      .split(',')
+      .map(b => b.trim())
+      .filter(b => b !== '')
+      .map(b => {
+        const [qty, disc] = b.split(':').map(v => v.trim());
+        return {
+          quantity: parseInt(qty) || 0,
+          discount_percent: parseFloat(disc) || 0
+        };
+      })
+      .filter(b => b.quantity > 0);
+    
+    setFormData((prev) => ({
+      ...prev,
+      bulk_bundles: bundles,
+    }));
+  };
+
   const handleFileUpload = async (e, fieldName = 'featured') => {
     const file = e.target.files[0];
     if (!file) return;
