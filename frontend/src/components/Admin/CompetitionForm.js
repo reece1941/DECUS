@@ -201,7 +201,26 @@ const CompetitionForm = () => {
       navigate('/admin/competitions');
     } catch (error) {
       console.error('Failed to save competition:', error);
-      alert(error.response?.data?.detail || 'Failed to save competition');
+      
+      // Better error handling
+      let errorMessage = 'Failed to save competition';
+      
+      if (error.response?.data?.detail) {
+        if (typeof error.response.data.detail === 'string') {
+          errorMessage = error.response.data.detail;
+        } else if (Array.isArray(error.response.data.detail)) {
+          // Pydantic validation errors
+          errorMessage = error.response.data.detail
+            .map(err => `${err.loc?.join('.')}: ${err.msg}`)
+            .join('\n');
+        } else {
+          errorMessage = JSON.stringify(error.response.data.detail);
+        }
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      alert(errorMessage);
     } finally {
       setLoading(false);
     }
