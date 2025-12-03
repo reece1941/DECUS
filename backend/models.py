@@ -12,6 +12,14 @@ class InstantWin(BaseModel):
     wallet_type: str = "site_credit"  # "site_credit" or "cash"
 
 
+class BulkBundle(BaseModel):
+    quantity: int
+    discount_percent: float = 0  # Discount percentage (0-100)
+
+class HowItWorksStep(BaseModel):
+    step_number: int
+    step_text: str
+
 class Competition(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
@@ -39,6 +47,8 @@ class Competition(BaseModel):
     instant_wins_found: int = 0
     prize_value: str = "0"
     benefits: List[str] = []
+    how_it_works: List[HowItWorksStep] = []
+    bulk_bundles: List[BulkBundle] = []
     product_id: str = ""
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
