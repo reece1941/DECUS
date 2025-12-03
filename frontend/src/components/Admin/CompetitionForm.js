@@ -190,8 +190,10 @@ const CompetitionForm = () => {
         instant_wins_found: 0, // Auto field
       };
 
+      console.log('Submitting payload:', payload);
+
       if (isEdit) {
-        await competitionsAPI.update(id, payload);
+        await competitionsAPI.create(payload);
         alert('Competition updated successfully!');
       } else {
         await competitionsAPI.create(payload);
