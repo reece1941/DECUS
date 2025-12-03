@@ -64,11 +64,17 @@
   font-size: 14px;
   transition: all 0.3s;
   font-family: inherit;
+  color: #000;
+  background: #fff;
 }
 
 .form-group select {
-  background: #fff;
   cursor: pointer;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
 }
 
 .form-group input:focus,
