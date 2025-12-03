@@ -49,16 +49,23 @@ class CompetitionCreate(BaseModel):
     subtitle: str = ""
     description: str = ""
     price: float
+    sale_price: Optional[float] = None
     video: str = ""
     image: str = ""
     hot: bool = False
     instant: bool = False
     max_tickets: int
+    max_tickets_per_user: Optional[int] = None
     tickets_sold: int = 0
     sold_override: int = 0
     end_datetime: str = ""
+    category: str = "all"
     tags: List[str] = []
     instant_wins: List[InstantWin] = []
+    instant_win_image: str = ""
+    instant_win_type: str = "site_credit"
+    instant_win_ticket_numbers: List[int] = []
+    instant_wins_found: int = 0
     prize_value: str = "0"
     benefits: List[str] = []
 
