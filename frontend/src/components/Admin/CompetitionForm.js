@@ -602,17 +602,68 @@ const CompetitionForm = () => {
               Configure instant win prizes that can be revealed immediately after purchase.
             </p>
 
+            <div style={{ 
+              background: '#fff8dc', 
+              padding: '12px 16px', 
+              borderRadius: '6px', 
+              marginBottom: '20px',
+              border: '1px solid #ffe4a8'
+            }}>
+              <strong style={{ color: '#cc8800', fontSize: '14px' }}>📐 Recommended Instant Win Image Size:</strong>
+              <p style={{ margin: '4px 0 0 0', color: '#333', fontSize: '13px' }}>
+                <strong>800x800px</strong> (square) or <strong>600x400px</strong> (3:2 ratio). Max file size: 10MB
+              </p>
+            </div>
+
             <div className="form-group">
-              <label htmlFor="instant_win_image">Instant Win Image</label>
+              <label>Upload Instant Win Reveal Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileUpload(e, 'instant_win')}
+                disabled={uploading}
+                style={{ cursor: uploading ? 'not-allowed' : 'pointer' }}
+              />
+              {uploading && <p className="upload-status">⏳ Uploading image...</p>}
+              <small style={{ color: '#666', fontSize: '12px', display: 'block', marginTop: '4px' }}>
+                This image appears when users reveal their instant win prize
+              </small>
+            </div>
+
+            {formData.instant_win_image && (
+              <div className="media-preview">
+                <label>Current Instant Win Image:</label>
+                <img src={formData.instant_win_image} alt="Instant Win Preview" style={{ maxWidth: '400px' }} />
+                <button 
+                  type="button" 
+                  onClick={() => setFormData(prev => ({...prev, instant_win_image: ''}))}
+                  style={{
+                    marginTop: '8px',
+                    padding: '6px 12px',
+                    background: '#dc3545',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '12px'
+                  }}
+                >
+                  Remove Image
+                </button>
+              </div>
+            )}
+
+            <div className="form-group">
+              <label htmlFor="instant_win_image">Or Enter Image URL</label>
               <input
                 id="instant_win_image"
                 type="url"
                 name="instant_win_image"
                 value={formData.instant_win_image}
                 onChange={handleChange}
-                placeholder="https://..."
+                placeholder="https://example.com/instant-win.jpg"
               />
-              <small style={{ color: '#666', fontSize: '12px' }}>Image shown when revealing instant wins</small>
+              <small style={{ color: '#666', fontSize: '12px' }}>Paste external image URL if not uploading</small>
             </div>
 
             <div className="form-group">
