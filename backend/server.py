@@ -250,8 +250,8 @@ async def upload_file(
     with file_path.open("wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
-    # Return public URL
-    file_url = f"/uploads/{filename}"
+    # Return API URL
+    file_url = f"/api/uploads/{filename}"
     
     return {"url": file_url}
 
