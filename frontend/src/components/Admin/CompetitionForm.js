@@ -453,23 +453,55 @@ const CompetitionForm = () => {
 
           {/* Media Section */}
           <section className="form-section">
-            <h2 className="section-title">Media</h2>
+            <h2 className="section-title">Featured Media</h2>
+            <div style={{ 
+              background: '#f0f8ff', 
+              padding: '12px 16px', 
+              borderRadius: '6px', 
+              marginBottom: '20px',
+              border: '1px solid #d0e8ff'
+            }}>
+              <strong style={{ color: '#0066cc', fontSize: '14px' }}>📐 Recommended Image Size:</strong>
+              <p style={{ margin: '4px 0 0 0', color: '#333', fontSize: '13px' }}>
+                <strong>1200x800px</strong> (3:2 ratio) or larger. Max file size: 10MB
+              </p>
+            </div>
 
             <div className="form-group">
-              <label>Upload Image or Video</label>
+              <label>Upload Featured Image or Video</label>
               <input
                 type="file"
                 accept="image/*,video/*"
-                onChange={handleFileUpload}
+                onChange={(e) => handleFileUpload(e, 'featured')}
                 disabled={uploading}
+                style={{ cursor: uploading ? 'not-allowed' : 'pointer' }}
               />
-              {uploading && <p className="upload-status">Uploading...</p>}
+              {uploading && <p className="upload-status">⏳ Uploading file...</p>}
+              <small style={{ color: '#666', fontSize: '12px', display: 'block', marginTop: '4px' }}>
+                This will be the main image/video shown on competition cards
+              </small>
             </div>
 
             {formData.image && (
               <div className="media-preview">
                 <label>Current Image:</label>
                 <img src={formData.image} alt="Preview" />
+                <button 
+                  type="button" 
+                  onClick={() => setFormData(prev => ({...prev, image: ''}))}
+                  style={{
+                    marginTop: '8px',
+                    padding: '6px 12px',
+                    background: '#dc3545',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '12px'
+                  }}
+                >
+                  Remove Image
+                </button>
               </div>
             )}
 
@@ -477,32 +509,50 @@ const CompetitionForm = () => {
               <div className="media-preview">
                 <label>Current Video:</label>
                 <video src={formData.video} controls />
+                <button 
+                  type="button" 
+                  onClick={() => setFormData(prev => ({...prev, video: ''}))}
+                  style={{
+                    marginTop: '8px',
+                    padding: '6px 12px',
+                    background: '#dc3545',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '12px'
+                  }}
+                >
+                  Remove Video
+                </button>
               </div>
             )}
 
             <div className="form-row">
               <div className="form-group">
-                <label htmlFor="image">Image URL (or upload above)</label>
+                <label htmlFor="image">Or Enter Image URL</label>
                 <input
                   id="image"
                   type="url"
                   name="image"
                   value={formData.image}
                   onChange={handleChange}
-                  placeholder="https://..."
+                  placeholder="https://example.com/image.jpg"
                 />
+                <small style={{ color: '#666', fontSize: '12px' }}>Paste external image URL if not uploading</small>
               </div>
 
               <div className="form-group">
-                <label htmlFor="video">Video URL (or upload above)</label>
+                <label htmlFor="video">Or Enter Video URL</label>
                 <input
                   id="video"
                   type="url"
                   name="video"
                   value={formData.video}
                   onChange={handleChange}
-                  placeholder="https://..."
+                  placeholder="https://example.com/video.mp4"
                 />
+                <small style={{ color: '#666', fontSize: '12px' }}>Paste external video URL if not uploading</small>
               </div>
             </div>
           </section>
