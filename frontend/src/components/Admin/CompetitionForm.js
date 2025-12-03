@@ -49,11 +49,22 @@ const CompetitionForm = () => {
       setFormData({
         ...data,
         price: data.price.toString(),
+        sale_price: data.sale_price?.toString() || '',
         max_tickets: data.max_tickets.toString(),
+        max_tickets_per_user: data.max_tickets_per_user?.toString() || '',
         prize_value: data.prize_value?.toString() || '',
         end_datetime: data.end_datetime || '',
+        category: data.category || 'all',
         tags: data.tags || [],
+        instant_win_image: data.instant_win_image || '',
+        instant_win_type: data.instant_win_type || 'site_credit',
+        instant_win_ticket_numbers: data.instant_win_ticket_numbers || [],
       });
+      
+      // Set instant win tickets input
+      if (data.instant_win_ticket_numbers?.length > 0) {
+        setInstantWinTicketsInput(data.instant_win_ticket_numbers.join(', '));
+      }
     } catch (error) {
       console.error('Failed to fetch competition:', error);
       alert('Failed to load competition');
