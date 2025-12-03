@@ -180,11 +180,14 @@ const CompetitionForm = () => {
       const payload = {
         ...formData,
         price: parseFloat(formData.price),
+        sale_price: formData.sale_price ? parseFloat(formData.sale_price) : null,
         max_tickets: parseInt(formData.max_tickets),
+        max_tickets_per_user: formData.max_tickets_per_user ? parseInt(formData.max_tickets_per_user) : null,
         sold: parseInt(formData.sold) || 0,
         prize_value: formData.prize_value
           ? parseFloat(formData.prize_value)
           : null,
+        instant_wins_found: 0, // Auto field
       };
 
       if (isEdit) {
