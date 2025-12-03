@@ -98,8 +98,32 @@ const CompetitionPage = () => {
     return <div className="error-page">Competition not found</div>;
   }
 
-  const total = quantity * competition.price;
-  const bulkBundles = [10, 25, 50, 100];
+  // Calculate total with bulk discount if applicable
+  const getBulkPrice = (qty) => {
+    if (!competition.bulk_bundles || competition.bulk_bundles.length === 0) {
+      return qty * competition.price;
+    }
+    
+    // Find matching bundle
+    const bundle = competition.bulk_bundles.find(b => b.quantity === qty);
+    if (bundle) {
+      const discountMultiplier = 1 - (bundle.discount_percent / 100);
+      return qty * competition.price * discountMultiplier;
+    }
+    
+    return qty * competition.price;
+  };
+
+  const total = getBulkPrice(quantity);
+  const bulkBundles = competition.bulk_bundles && competition.bulk_bundles.length > 0
+    ? competition.bulk_bundles
+    : [
+      { quantity: 10, discount_percent: 0 },
+      { quantity: 25, discount_percent: 5 },
+      { quantity: 50, discount_percent: 10 },
+      { quantity: 100, discount_percent: 15 }
+    ];
+  
   const benefits = competition.benefits && competition.benefits.length > 0 
     ? competition.benefits 
     : [
@@ -107,6 +131,15 @@ const CompetitionPage = () => {
       'Direct payment to landlord available',
       'Coverage for 6 consecutive months',
       'No restrictions on property type'
+    ];
+
+  const howItWorksSteps = competition.how_it_works && competition.how_it_works.length > 0
+    ? competition.how_it_works
+    : [
+      { step_number: 1, step_text: 'Purchase your competition tickets' },
+      { step_number: 2, step_text: 'Live draw conducted at competition end' },
+      { step_number: 3, step_text: 'Winner verification within 48 hours' },
+      { step_number: 4, step_text: 'Prize delivered or transferred to winner' }
     ];
 
   return (
