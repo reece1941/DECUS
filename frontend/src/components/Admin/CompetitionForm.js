@@ -193,7 +193,7 @@ const CompetitionForm = () => {
       console.log('Submitting payload:', payload);
 
       if (isEdit) {
-        await competitionsAPI.create(payload);
+        await competitionsAPI.update(id, payload);
         alert('Competition updated successfully!');
       } else {
         await competitionsAPI.create(payload);
