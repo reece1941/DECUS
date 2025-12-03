@@ -501,6 +501,122 @@ const CompetitionForm = () => {
             </div>
           </section>
 
+          {/* Instant Wins Section */}
+          <section className="form-section">
+            <h2 className="section-title">Instant Wins Configuration</h2>
+            <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+              Configure instant win prizes that can be revealed immediately after purchase.
+            </p>
+
+            <div className="form-group">
+              <label htmlFor="instant_win_image">Instant Win Image</label>
+              <input
+                id="instant_win_image"
+                type="url"
+                name="instant_win_image"
+                value={formData.instant_win_image}
+                onChange={handleChange}
+                placeholder="https://..."
+              />
+              <small style={{ color: '#666', fontSize: '12px' }}>Image shown when revealing instant wins</small>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="instant_win_type">Prize Type</label>
+              <select
+                id="instant_win_type"
+                name="instant_win_type"
+                value={formData.instant_win_type}
+                onChange={handleChange}
+              >
+                <option value="site_credit">Site Credit</option>
+                <option value="cash">Cash</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="instant_win_tickets">
+                Winning Ticket Numbers
+              </label>
+              <textarea
+                id="instant_win_tickets"
+                value={instantWinTicketsInput}
+                onChange={handleInstantWinTicketsChange}
+                placeholder="Enter ticket numbers separated by commas, e.g., 12, 33, 103, 1000, 2547"
+                rows={6}
+                style={{
+                  fontFamily: 'monospace',
+                  fontSize: '14px',
+                }}
+              />
+              <small style={{ color: '#666', fontSize: '12px' }}>
+                Comma-separated ticket numbers that will win instant prizes
+              </small>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label>Amount of Instants</label>
+                <input
+                  type="text"
+                  value={formData.instant_win_ticket_numbers.length}
+                  disabled
+                  style={{ background: '#f0f0f0', cursor: 'not-allowed' }}
+                />
+                <small style={{ color: '#666', fontSize: '12px' }}>Auto-calculated</small>
+              </div>
+
+              <div className="form-group">
+                <label>Found</label>
+                <input
+                  type="text"
+                  value="0"
+                  disabled
+                  style={{ background: '#f0f0f0', cursor: 'not-allowed' }}
+                />
+                <small style={{ color: '#666', fontSize: '12px' }}>Auto-tracked</small>
+              </div>
+
+              <div className="form-group">
+                <label>Remaining</label>
+                <input
+                  type="text"
+                  value={formData.instant_win_ticket_numbers.length - 0}
+                  disabled
+                  style={{ background: '#f0f0f0', cursor: 'not-allowed' }}
+                />
+                <small style={{ color: '#666', fontSize: '12px' }}>Auto-calculated</small>
+              </div>
+            </div>
+
+            {formData.instant_win_ticket_numbers.length > 0 && (
+              <div
+                style={{
+                  background: '#f8f9fa',
+                  padding: '16px',
+                  borderRadius: '6px',
+                  marginTop: '12px',
+                }}
+              >
+                <strong style={{ fontSize: '14px' }}>
+                  Preview ({formData.instant_win_ticket_numbers.length} tickets):
+                </strong>
+                <div
+                  style={{
+                    marginTop: '8px',
+                    fontSize: '13px',
+                    color: '#666',
+                    maxHeight: '100px',
+                    overflow: 'auto',
+                  }}
+                >
+                  {formData.instant_win_ticket_numbers.slice(0, 50).join(', ')}
+                  {formData.instant_win_ticket_numbers.length > 50 && '...'}
+                </div>
+              </div>
+            )}
+          </section>
+
           {/* Form Actions */}
           <div className="form-actions">
             <button
