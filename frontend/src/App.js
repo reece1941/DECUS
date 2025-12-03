@@ -32,8 +32,12 @@ function App() {
               <Route path="/thank-you" element={<ThankYouPage />} />
               <Route path="/receipt" element={<ReceiptPage />} />
               
-              {/* Admin Routes */}
-              <Route path="/admin" element={<AdminLayout />}>
+              {/* Admin Routes - Protected */}
+              <Route path="/admin" element={
+                <ProtectedAdminRoute>
+                  <AdminLayout />
+                </ProtectedAdminRoute>
+              }>
                 <Route index element={<AdminDashboard />} />
                 <Route path="competitions" element={<CompetitionsList />} />
                 <Route path="competitions/create" element={<CompetitionForm />} />
