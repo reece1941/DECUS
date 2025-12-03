@@ -649,6 +649,9 @@ async def get_admin_stats(current_user: dict = Depends(get_current_admin_user)):
 app.include_router(api_router)
 app.include_router(payment_router, prefix="/api")
 
+# Mount uploads directory for static file serving
+app.mount("/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
+
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
