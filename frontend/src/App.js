@@ -13,6 +13,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminLayout from './components/Admin/AdminLayout';
 import CompetitionsList from './components/Admin/CompetitionsList';
 import CompetitionForm from './components/Admin/CompetitionForm';
+import ProtectedAdminRoute from './components/Admin/ProtectedAdminRoute';
 import Footer from './components/Footer/Footer';
 import './App.css';
 
