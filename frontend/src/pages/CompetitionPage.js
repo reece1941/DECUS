@@ -367,8 +367,12 @@ const CompetitionPage = () => {
                 <div className="decus-bulk-section">
                   <div className="decus-bulk-title">Or choose a bulk bundle</div>
                   <div className="decus-bulk-grid">
-                    {bulkBundles.map((bundleQty, index) => {
-                      const bundleTotal = bundleQty * competition.price;
+                    {bulkBundles.map((bundle, index) => {
+                      const bundleQty = bundle.quantity;
+                      const discount = bundle.discount_percent;
+                      const originalPrice = bundleQty * competition.price;
+                      const bundleTotal = originalPrice * (1 - discount / 100);
+                      const savings = originalPrice - bundleTotal;
                       const isBest = index === bulkBundles.length - 1;
                       return (
                         <button
@@ -377,9 +381,11 @@ const CompetitionPage = () => {
                           onClick={() => setQuantity(bundleQty)}
                         >
                           {isBest && <span className="decus-bulk-tag">Best Value</span>}
+                          {discount > 0 && !isBest && <span className="decus-bulk-tag" style={{background: '#28a745'}}>{discount}% OFF</span>}
                           <span className="decus-bulk-size">{bundleQty} Tickets</span>
                           <span className="decus-bulk-price">£{bundleTotal.toFixed(2)}</span>
-                          <span className="decus-bulk-note">Tap to auto-fill quantity</span>
+                          {savings > 0 && <span className="decus-bulk-note" style={{color: '#28a745', fontWeight: '600'}}>Save £{savings.toFixed(2)}</span>}
+                          {savings === 0 && <span className="decus-bulk-note">Tap to auto-fill quantity</span>}
                         </button>
                       );
                     })}
