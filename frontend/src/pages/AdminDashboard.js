@@ -57,16 +57,16 @@ const AdminDashboard = () => {
 
   return (
     <div style={{ animation: 'fadeIn 0.3s' }}>
-      <div className=\"admin-page-header\">
-        <h1 className=\"admin-page-title\">Dashboard Overview</h1>
-        <p className=\"admin-page-subtitle\">
+      <div className="admin-page-header">
+        <h1 className="admin-page-title">Dashboard Overview</h1>
+        <p className="admin-page-subtitle">
           Welcome back! Here's what's happening with your platform.
         </p>
       </div>
 
       {loading ? (
         <div style={{ textAlign: 'center', padding: '60px' }}>
-          <div className=\"spinner\" style={{
+          <div className="spinner" style={{
             width: '40px',
             height: '40px',
             border: '4px solid #f3f3f3',
