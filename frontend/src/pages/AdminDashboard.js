@@ -166,7 +166,7 @@ const AdminDashboard = () => {
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <button
             onClick={() => navigate('/admin/competitions/create')}
-            className=\"admin-btn-primary\"
+            className="admin-btn-primary"
           >
             + Create Competition
           </button>
