@@ -237,22 +237,12 @@ const CompetitionPage = () => {
                   How It Works
                 </h3>
                 <div className="decus-steps-list">
-                  <div className="decus-step-item">
-                    <div className="decus-step-number">1</div>
-                    <div className="decus-step-text">Purchase your competition tickets</div>
-                  </div>
-                  <div className="decus-step-item">
-                    <div className="decus-step-number">2</div>
-                    <div className="decus-step-text">Live draw conducted at competition end</div>
-                  </div>
-                  <div className="decus-step-item">
-                    <div className="decus-step-number">3</div>
-                    <div className="decus-step-text">Winner verification within 48 hours</div>
-                  </div>
-                  <div className="decus-step-item">
-                    <div className="decus-step-number">4</div>
-                    <div className="decus-step-text">First payment made within 5 working days</div>
-                  </div>
+                  {howItWorksSteps.map((step) => (
+                    <div key={step.step_number} className="decus-step-item">
+                      <div className="decus-step-number">{step.step_number}</div>
+                      <div className="decus-step-text">{step.step_text}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
