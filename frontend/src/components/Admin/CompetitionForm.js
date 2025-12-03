@@ -86,6 +86,24 @@ const CompetitionForm = () => {
     }
   };
 
+  const handleInstantWinTicketsChange = (e) => {
+    const value = e.target.value;
+    setInstantWinTicketsInput(value);
+    
+    // Parse comma-separated numbers
+    const numbers = value
+      .split(',')
+      .map(n => n.trim())
+      .filter(n => n !== '')
+      .map(n => parseInt(n))
+      .filter(n => !isNaN(n));
+    
+    setFormData((prev) => ({
+      ...prev,
+      instant_win_ticket_numbers: numbers,
+    }));
+  };
+
   const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
