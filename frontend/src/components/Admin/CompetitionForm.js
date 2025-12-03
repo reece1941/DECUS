@@ -96,11 +96,29 @@ const CompetitionForm = () => {
         instant_win_image: data.instant_win_image || '',
         instant_win_type: data.instant_win_type || 'site_credit',
         instant_win_ticket_numbers: data.instant_win_ticket_numbers || [],
+        benefits: data.benefits || [],
+        how_it_works: data.how_it_works || [],
+        bulk_bundles: data.bulk_bundles || [],
       });
       
       // Set instant win tickets input
       if (data.instant_win_ticket_numbers?.length > 0) {
         setInstantWinTicketsInput(data.instant_win_ticket_numbers.join(', '));
+      }
+
+      // Set benefits input
+      if (data.benefits?.length > 0) {
+        setBenefitsInput(data.benefits.join('\n'));
+      }
+
+      // Set how it works input
+      if (data.how_it_works?.length > 0) {
+        setHowItWorksInput(data.how_it_works.map(step => step.step_text).join('\n'));
+      }
+
+      // Set bulk bundles input
+      if (data.bulk_bundles?.length > 0) {
+        setBulkBundlesInput(data.bulk_bundles.map(b => `${b.quantity}:${b.discount_percent}`).join(','));
       }
     } catch (error) {
       console.error('Failed to fetch competition:', error);
