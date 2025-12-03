@@ -331,6 +331,21 @@ const CompetitionForm = () => {
               </div>
 
               <div className="form-group">
+                <label htmlFor="sale_price">Sale Price (£)</label>
+                <input
+                  id="sale_price"
+                  type="number"
+                  name="sale_price"
+                  value={formData.sale_price}
+                  onChange={handleChange}
+                  placeholder="0.79"
+                  step="0.01"
+                  min="0.01"
+                />
+                <small style={{ color: '#666', fontSize: '12px' }}>Optional - discounted price</small>
+              </div>
+
+              <div className="form-group">
                 <label htmlFor="max_tickets" className="required">
                   Max Tickets
                 </label>
@@ -347,6 +362,20 @@ const CompetitionForm = () => {
                 {errors.max_tickets && (
                   <span className="error-text">{errors.max_tickets}</span>
                 )}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="max_tickets_per_user">Max Tickets Per User</label>
+                <input
+                  id="max_tickets_per_user"
+                  type="number"
+                  name="max_tickets_per_user"
+                  value={formData.max_tickets_per_user}
+                  onChange={handleChange}
+                  placeholder="100"
+                  min="1"
+                />
+                <small style={{ color: '#666', fontSize: '12px' }}>Optional - limit per user</small>
               </div>
 
               <div className="form-group">
