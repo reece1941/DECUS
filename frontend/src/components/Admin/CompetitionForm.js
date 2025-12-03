@@ -104,7 +104,7 @@ const CompetitionForm = () => {
     }));
   };
 
-  const handleFileUpload = async (e) => {
+  const handleFileUpload = async (e, fieldName = 'featured') => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -116,23 +116,32 @@ const CompetitionForm = () => {
 
     try {
       setUploading(true);
-      const formData = new FormData();
-      formData.append('file', file);
-
       const { data } = await uploadFile(file);
       
-      // Determine if it's image or video
-      const isVideo = file.type.startsWith('video/');
-      setFormData((prev) => ({
-        ...prev,
-        [isVideo ? 'video' : 'image']: data.url,
-        [isVideo ? 'image' : 'video']: '', // Clear the other field
-      }));
+      // Construct full URL
+      const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+      const fullUrl = `${backendUrl}${data.url}`;
+      
+      if (fieldName === 'instant_win') {
+        // Update instant win image
+        setFormData((prev) => ({
+          ...prev,
+          instant_win_image: fullUrl,
+        }));
+      } else {
+        // Determine if it's image or video for featured media
+        const isVideo = file.type.startsWith('video/');
+        setFormData((prev) => ({
+          ...prev,
+          [isVideo ? 'video' : 'image']: fullUrl,
+          [isVideo ? 'image' : 'video']: '', // Clear the other field
+        }));
+      }
 
       alert('File uploaded successfully!');
     } catch (error) {
       console.error('Upload failed:', error);
-      alert('Failed to upload file');
+      alert(error.response?.data?.detail || 'Failed to upload file. Please try again.');
     } finally {
       setUploading(false);
     }
