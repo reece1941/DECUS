@@ -785,6 +785,32 @@ async def mark_competition_winner(
     }
 
 
+@api_router.get("/admin/orders")
+async def get_all_orders(current_user: dict = Depends(get_current_admin_user)):
+    """Get all orders with metrics (admin only)"""
+    orders_cursor = db.orders.find({}, {"_id": 0}).sort("created_at", -1)
+    orders = await orders_cursor.to_list(length=1000)
+    
+    # Calculate metrics
+    total_revenue = sum(order.get("total", 0) for order in orders)
+    total_orders = len(orders)
+    
+    # Today's metrics
+    today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+    orders_today = [o for o in orders if datetime.fromisoformat(o.get("created_at", "2000-01-01")) >= today_start]
+    revenue_today = sum(order.get("total", 0) for order in orders_today)
+    
+    return {
+        "orders": orders,
+        "metrics": {
+            "total_revenue": total_revenue,
+            "total_orders": total_orders,
+            "orders_today": len(orders_today),
+            "revenue_today": revenue_today
+        }
+    }
+
+
 # Include routers in the main app
 app.include_router(api_router)
 app.include_router(payment_router, prefix="/api")
