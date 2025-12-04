@@ -42,6 +42,8 @@ function App() {
                 <Route path="competitions" element={<CompetitionsList />} />
                 <Route path="competitions/create" element={<CompetitionForm />} />
                 <Route path="competitions/edit/:id" element={<CompetitionForm />} />
+                <Route path="competitions/:id/entries" element={<CompetitionEntries />} />
+                <Route path="competitions/:id/draw-winner" element={<DrawWinner />} />
                 <Route path="orders" element={<div style={{padding: '40px'}}>Orders page coming soon...</div>} />
                 <Route path="users" element={<div style={{padding: '40px'}}>Users page coming soon...</div>} />
                 <Route path="settings" element={<div style={{padding: '40px'}}>Settings page coming soon...</div>} />
