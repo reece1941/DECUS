@@ -144,6 +144,15 @@ const CompetitionsList = () => {
                     <div className="action-buttons">
                       <button
                         onClick={() =>
+                          navigate(`/admin/competitions/${comp.id}/entries`)
+                        }
+                        className="btn-entries"
+                        title="View Entries"
+                      >
+                        📋
+                      </button>
+                      <button
+                        onClick={() =>
                           navigate(`/admin/competitions/edit/${comp.id}`)
                         }
                         className="btn-edit"
