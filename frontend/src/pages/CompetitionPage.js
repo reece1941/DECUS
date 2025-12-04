@@ -196,7 +196,6 @@ const CompetitionPage = () => {
                   <div className="decus-prize-label">Prize Value</div>
                   <div className="decus-prize-amount">£{competition.prize_value || '0'}</div>
                 </div>
-                <div className="decus-prize-period">6 months<br />£400/month</div>
               </div>
 
               {/* Prize Benefits */}
