@@ -562,6 +562,21 @@ async def complete_checkout(
                 {"id": item["competition_id"]},
                 {"$set": {"tickets_sold": new_tickets_sold}}
             )
+            
+            # Create competition entry record
+            entry = {
+                "id": str(uuid.uuid4()),
+                "competition_id": item["competition_id"],
+                "user_id": current_user["user_id"],
+                "user_email": user["email"],
+                "user_name": user.get("name", ""),
+                "ticket_numbers": allocated,
+                "quantity": item["quantity"],
+                "total_paid": item["price"] * item["quantity"],
+                "order_id": order.id,
+                "created_at": datetime.utcnow().isoformat()
+            }
+            await db.competition_entries.insert_one(entry)
         
         order_dict["tickets"] = tickets
         order_dict["payment_status"] = "completed"
