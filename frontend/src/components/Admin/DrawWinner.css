@@ -1,0 +1,298 @@
+.draw-winner-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0f26 0%, #2d1b3d 50%, #1a0f26 100%);
+  padding: 40px 20px;
+  animation: fadeIn 0.4s;
+}
+
+.draw-winner-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-4px);
+}
+
+.draw-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 12px 0;
+  text-shadow: 0 4px 12px rgba(255, 105, 180, 0.5);
+}
+
+.draw-subtitle {
+  font-size: 18px;
+  color: #ff69b4;
+  text-align: center;
+  margin: 0 0 48px 0;
+  font-weight: 600;
+}
+
+/* Ticket Finder */
+.ticket-finder {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.2);
+}
+
+.ticket-finder label {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  gap: 12px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 105, 180, 0.3);
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #ff69b4;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.2);
+}
+
+.search-button {
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(255, 105, 180, 0.4);
+}
+
+.search-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 105, 180, 0.6);
+}
+
+.search-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Result Box */
+.result-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 32px;
+  text-align: center;
+  animation: slideUp 0.4s;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-box.not-found {
+  border: 2px solid rgba(255, 69, 58, 0.5);
+  box-shadow: 0 8px 32px rgba(255, 69, 58, 0.2);
+}
+
+.result-box.winner-found {
+  border: 2px solid rgba(255, 105, 180, 0.5);
+  box-shadow: 0 8px 32px rgba(255, 105, 180, 0.3);
+}
+
+.result-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.result-box h2 {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  margin: 0 0 16px 0;
+}
+
+.result-box p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+/* Winner Details */
+.winner-details {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-value {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.ticket-badge {
+  background: linear-gradient(135deg, #ff69b4, #ff1493);
+  padding: 4px 16px;
+  border-radius: 20px;
+  font-size: 18px;
+}
+
+.detail-value code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #ff69b4;
+}
+
+/* Mark Winner Button */
+.mark-winner-button {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 900;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(0, 255, 136, 0.4);
+  text-transform: uppercase;
+}
+
+.mark-winner-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 255, 136, 0.6);
+}
+
+.mark-winner-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.warning-text {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #ffd700;
+}
+
+/* Instructions */
+.instructions-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 32px;
+  color: #fff;
+}
+
+.instructions-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: #ff69b4;
+}
+
+.instructions-box ol {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.instructions-box li {
+  margin: 12px 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .draw-title {
+    font-size: 36px;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
