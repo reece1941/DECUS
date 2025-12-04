@@ -20,6 +20,19 @@ class HowItWorksStep(BaseModel):
     step_number: int
     step_text: str
 
+class CompetitionEntry(BaseModel):
+    """Individual entry for a competition"""
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    competition_id: str
+    user_id: str
+    user_email: str
+    user_name: str
+    ticket_numbers: List[int]  # Array of ticket numbers assigned
+    quantity: int
+    total_paid: float
+    order_id: str
+    created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
+
 class Competition(BaseModel):
     model_config = ConfigDict(extra="ignore")
     
