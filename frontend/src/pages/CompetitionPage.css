@@ -671,8 +671,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid #262033;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #e0e0e0;
   border-radius: 12px;
   margin-bottom: 24px;
 }
