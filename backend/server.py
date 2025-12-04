@@ -654,6 +654,122 @@ async def get_admin_stats(current_user: dict = Depends(get_current_admin_user)):
     }
 
 
+@api_router.get("/admin/competitions/{competition_id}/entries")
+async def get_competition_entries(
+    competition_id: str,
+    current_user: dict = Depends(get_current_admin_user)
+):
+    """Get all entries for a competition"""
+    entries = await db.competition_entries.find(
+        {"competition_id": competition_id},
+        {"_id": 0}
+    ).sort("created_at", -1).to_list(10000)
+    
+    # Calculate metrics
+    total_entries = len(entries)
+    total_tickets = sum(entry.get("quantity", 0) for entry in entries)
+    total_revenue = sum(entry.get("total_paid", 0) for entry in entries)
+    unique_users = len(set(entry.get("user_id") for entry in entries))
+    
+    return {
+        "entries": entries,
+        "metrics": {
+            "total_entries": total_entries,
+            "total_tickets": total_tickets,
+            "total_revenue": total_revenue,
+            "unique_users": unique_users
+        }
+    }
+
+
+@api_router.post("/admin/competitions/{competition_id}/find-winner")
+async def find_winner_by_ticket(
+    competition_id: str,
+    ticket_number: int,
+    current_user: dict = Depends(get_current_admin_user)
+):
+    """Find winner by ticket number"""
+    # Search for entry with this ticket number
+    entry = await db.competition_entries.find_one(
+        {
+            "competition_id": competition_id,
+            "ticket_numbers": ticket_number
+        },
+        {"_id": 0}
+    )
+    
+    if not entry:
+        return {
+            "found": False,
+            "message": f"Ticket number {ticket_number} not found in entries"
+        }
+    
+    # Get user details
+    user = await db.users.find_one({"id": entry["user_id"]}, {"_id": 0})
+    
+    return {
+        "found": True,
+        "ticket_number": ticket_number,
+        "winner": {
+            "user_id": entry["user_id"],
+            "name": entry["user_name"],
+            "email": entry["user_email"],
+            "entry_id": entry["id"],
+            "order_id": entry["order_id"],
+            "purchase_date": entry["created_at"]
+        }
+    }
+
+
+@api_router.post("/admin/competitions/{competition_id}/mark-winner")
+async def mark_competition_winner(
+    competition_id: str,
+    ticket_number: int,
+    current_user: dict = Depends(get_current_admin_user)
+):
+    """Mark a competition as won with winner details"""
+    # Find the entry first
+    entry = await db.competition_entries.find_one(
+        {
+            "competition_id": competition_id,
+            "ticket_numbers": ticket_number
+        },
+        {"_id": 0}
+    )
+    
+    if not entry:
+        raise HTTPException(status_code=404, detail="Ticket number not found")
+    
+    # Update competition with winner
+    update_result = await db.competitions.update_one(
+        {"id": competition_id},
+        {
+            "$set": {
+                "is_finished": True,
+                "winner_user_id": entry["user_id"],
+                "winner_name": entry["user_name"],
+                "winner_email": entry["user_email"],
+                "winning_ticket_number": ticket_number,
+                "draw_date": datetime.utcnow().isoformat(),
+                "updated_at": datetime.utcnow()
+            }
+        }
+    )
+    
+    if update_result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Competition not found")
+    
+    return {
+        "success": True,
+        "message": "Winner marked successfully",
+        "winner": {
+            "name": entry["user_name"],
+            "email": entry["user_email"],
+            "ticket_number": ticket_number
+        }
+    }
+
+
 # Include routers in the main app
 app.include_router(api_router)
 app.include_router(payment_router, prefix="/api")
