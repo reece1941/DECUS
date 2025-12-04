@@ -63,6 +63,16 @@ class Competition(BaseModel):
     how_it_works: List[HowItWorksStep] = []
     bulk_bundles: List[BulkBundle] = []
     product_id: str = ""
+    
+    # Winner information
+    is_finished: bool = False
+    winner_user_id: Optional[str] = None
+    winner_name: Optional[str] = None
+    winner_email: Optional[str] = None
+    winning_ticket_number: Optional[int] = None
+    draw_date: Optional[str] = None
+    display_order: int = 0  # For ordering finished competitions
+    
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
